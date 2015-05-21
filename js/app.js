@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
 
+
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
@@ -15,19 +16,20 @@ $(document).ready(function(){
 	/******New Game Button Function******/
 	function newGame(){}
 	/*Game starts with random number*/
-	function randomNumber(){}
+	function randomNumber(){
+		
+	}
 	/*make sure the input are numeric*/
 	function userNumber(){
 		var guessButton = document.getElementById('guessButton');
 		guessButton.addEventListener('click', function(){
 			var userGuess = document.getElementById('userGuess').value;
 			if(userGuess > 100 || userGuess < 0){
-					alert("Number between 0 and 100");
+					alert('Number between 0 and 100');
 			}else if(isNaN(userGuess)){
-					alert("Numeric Number Please");
+					alert('Numeric Number Please');
 			}
 		}, false);
-
 	}
 
 	/*user guess and determines which feedback to provide*/
