@@ -10,25 +10,23 @@ $(document).ready(function(){
   	$("a.close").click(function(){
   		$(".overlay").fadeOut(1000);
   	});
-	var game = new createRandomNumber();
+    randomNumberArray();
+    // generates a random number
+      function randomInt() {
+          return Math.floor(Math.random()*100) + 1;
+      }
+      //keeps the random number and adds to an array
+      function randomNumberArray(){
+           nums = [];
+           for (var i = 0; i < 50; i = i + 1) {
+               nums.push(randomInt());
+           }
+           console.log (nums);
+       }
 
-	var userNum = new userNumber();
-
-	function createRandomNumber(){
 
 
-    function getRandomInt(){
-			return Math.floor(Math.random()*100) + 1;
-		}
-		function randomNumbers(){
-			var num;
-			num = getRandomInt();
-			return num;
-		}
-		var rN = randomNumbers();
-		console.log(rN);
-
-	}
+  var userNum = new userNumber();
 	/*make sure the input are numeric*/
 	function userNumber(){
 		var guessButton = document.getElementById('guessButton');
