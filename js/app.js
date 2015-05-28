@@ -31,14 +31,19 @@ $(document).ready(function(){
 
          var userGuess = document.getElementById('userGuess').value;
          var guessButton = document.getElementById('guessButton');
-         guessButton.addEventListener('click', function(){
-           /*make sure the input are numeric*/
+         guessButton.addEventListener('click', function (){
+        /*make sure the input are numeric*/
              if(userGuess > 100 || userGuess < 0){
        					alert('Number between 0 and 100');
        			}else if(isNaN(userGuess)){
        					alert('Numeric Number Please');
        			}
          }, false);
+         /*Check all the clicks made*/
+
+         for(var clicks = 0; clicks < argument.length; clicks++){
+           var guessNumber = document.createTextNode(clicks);
+         }
        }
 
        randomNumberArray();
@@ -46,7 +51,8 @@ $(document).ready(function(){
 
 
 
-	
+
+
 		/*user guess and determines which feedback to provide*/
 		/*Feedback about the guess should appear in div#feedback*/
 
