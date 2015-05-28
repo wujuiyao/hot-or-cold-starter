@@ -10,8 +10,8 @@ $(document).ready(function(){
   	$("a.close").click(function(){
   		$(".overlay").fadeOut(1000);
   	});
-    randomNumberArray();
-    // generates a random number
+
+      //generates a random number
       function randomInt() {
           return Math.floor(Math.random()*100) + 1;
       }
@@ -21,26 +21,35 @@ $(document).ready(function(){
            for (var i = 0; i < 50; i = i + 1) {
                nums.push(randomInt());
            }
-           console.log (nums);
+           return nums;
+       }
+       //get a number from the array - start with first
+       var guessN = randomNumberArray();
+       function startGame(){
+         var number = guessN[0];
+         console.log(number);
+
+         var userGuess = document.getElementById('userGuess').value;
+         var guessButton = document.getElementById('guessButton');
+         guessButton.addEventListener('click', function(){
+           /*make sure the input are numeric*/
+             if(userGuess > 100 || userGuess < 0){
+       					alert('Number between 0 and 100');
+       			}else if(isNaN(userGuess)){
+       					alert('Numeric Number Please');
+       			}
+         }, false);
        }
 
+       randomNumberArray();
+       startGame();
 
 
-  var userNum = new userNumber();
-	/*make sure the input are numeric*/
-	function userNumber(){
-		var guessButton = document.getElementById('guessButton');
-		guessButton.addEventListener('click', function(){
-			var userGuess = document.getElementById('userGuess').value;
-			if(userGuess > 100 || userGuess < 0){
-					alert('Number between 0 and 100');
-			}else if(isNaN(userGuess)){
-					alert('Numeric Number Please');
-			}
-		}, false);
+
+	
 		/*user guess and determines which feedback to provide*/
 		/*Feedback about the guess should appear in div#feedback*/
-	}
+
 	/*record all the guesses + all the numbers they have guessed*/
 	/*how to start writing functions*/
 });
