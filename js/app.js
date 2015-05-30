@@ -48,11 +48,14 @@ $(document).ready(function(){
        var button = document.getElementById('guessButton');
 
        button.addEventListener('click', function(){
-         var defaultVal = parseInt(document.getElementById('count').innerHTML);
-         defaultVal = isNaN(defaultVal) ? 0 : defaultVal;
+         var defaultVal = document.getElementById('count').innerHTML;
          defaultVal ++;
          document.getElementById('count').innerHTML = defaultVal;
-        //  var clickedVal = defaultVal.innerHTML = "0";
+         console.log(defaultVal);
+
+
+         //  defaultVal = isNaN(defaultVal) ? 0 : defaultVal;
+
 
        });
      }
