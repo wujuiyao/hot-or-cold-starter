@@ -46,8 +46,11 @@ $(document).ready(function(){
      /*Check all the clicks made*/
      function clickGuess(){
        var button = document.getElementById('guessButton');
+       var clicked = document.getElementById('count');
+       var defaultVal = clicked.innerHTML;
        button.addEventListener('click', function(){
-         console.log('Button clicked');
+         var clicks = 0;
+
        });
      }
 
