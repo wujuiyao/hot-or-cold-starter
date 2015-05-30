@@ -11,6 +11,9 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
+    randomNumberArray();
+    startGame();
+    // clickGuess();
 
 
 
@@ -21,20 +24,21 @@ $(document).ready(function(){
     //keeps the random number and adds to an array
     function randomNumberArray(){
          nums = [];
-         for (var i = 0; i < 50; i = i + 1) {
+         for (var i = 0; i < 30; i = i + 1) {
              nums.push(randomInt());}
          return nums;
      }
 
+
      function startGame(){
-       //get a number from the array - start with first
        var guessN = randomNumberArray();
+       //get a number from the array - start with first
        var number = guessN[0];
        console.log(number);
 
-       var userGuess = document.getElementById('userGuess').value;
        var guessButton = document.getElementById('guessButton');
        guessButton.addEventListener('click', function (){
+         var userGuess = document.getElementById('userGuess').value;
       /*make sure the input are numeric*/
            if(userGuess > 100 || userGuess < 0){
      					alert('Number between 0 and 100');
@@ -42,27 +46,29 @@ $(document).ready(function(){
      					alert('Numeric Number Please');
      			}
        }, false);
-     }
-     /*Check all the clicks made*/
-     function clickGuess(){
-       var button = document.getElementById('guessButton');
+       /*Check all the clicks made*/
 
-       button.addEventListener('click', function(){
-         var defaultVal = document.getElementById('count').innerHTML;
-         defaultVal ++;
-         document.getElementById('count').innerHTML = defaultVal;
-         console.log(defaultVal);
-
-
-         //  defaultVal = isNaN(defaultVal) ? 0 : defaultVal;
-
-
-       });
      }
 
-     randomNumberArray();
-     startGame();
-     clickGuess();
+    //  function clickGuess(){
+    //    var button = document.getElementById('guessButton');
+     //
+    //    button.addEventListener('click', function(){
+    //      var defaultVal = document.getElementById('count').innerHTML;
+    //      defaultVal ++;
+    //      document.getElementById('count').innerHTML = defaultVal;
+    //      console.log(defaultVal);
+     //
+    //      //what does this code do?
+    //      //var value = parseInt(document.getElementById('number').value, 10);
+    //      // value = isNaN(value) ? 0 : value;
+    //      // value++;
+    //      // document.getElementById('number').value = value;
+     //
+     //
+    //    });
+    //  }
+
 
 		/*user guess and determines which feedback to provide*/
 		/*Feedback about the guess should appear in div#feedback*/
