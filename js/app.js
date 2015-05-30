@@ -14,8 +14,6 @@ $(document).ready(function(){
     randomNumberArray();
     startGame();
 
-
-
     //generates a random number
     function randomInt() {
         return Math.floor(Math.random()*100) + 1;
@@ -27,7 +25,6 @@ $(document).ready(function(){
              nums.push(randomInt());}
          return nums;
      }
-
 
      function startGame(){
        var guessN = randomNumberArray();
@@ -44,11 +41,14 @@ $(document).ready(function(){
      			}else if(isNaN(userGuess)){
      					alert('Numeric Number Please');
      			}
-           /*Check all the clicks made*/
+      /*Check all the clicks made*/
           var defaultVal = document.getElementById('count').innerHTML;
           defaultVal ++;
           document.getElementById('count').innerHTML = defaultVal;
           console.log(defaultVal);
+
+
+
        }, false);
 
      }
