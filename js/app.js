@@ -12,8 +12,7 @@ $(document).ready(function(){
   	});
 
 
-    randomNumberArray();
-    startGame();
+
 
     //generates a random number
     function randomInt() {
@@ -23,14 +22,13 @@ $(document).ready(function(){
     function randomNumberArray(){
          nums = [];
          for (var i = 0; i < 50; i = i + 1) {
-             nums.push(randomInt());
-         }
+             nums.push(randomInt());}
          return nums;
      }
-     //get a number from the array - start with first
-     var guessN = randomNumberArray();
 
      function startGame(){
+       //get a number from the array - start with first
+       var guessN = randomNumberArray();
        var number = guessN[0];
        console.log(number);
 
@@ -46,9 +44,16 @@ $(document).ready(function(){
        }, false);
      }
      /*Check all the clicks made*/
+     function clickGuess(){
+       var button = document.getElementById('guessButton');
+       button.addEventListener('click', function(){
+         console.log('Button clicked');
+       });
+     }
 
-
-
+     randomNumberArray();
+     startGame();
+     clickGuess();
 
 		/*user guess and determines which feedback to provide*/
 		/*Feedback about the guess should appear in div#feedback*/
@@ -56,6 +61,7 @@ $(document).ready(function(){
 	/*record all the guesses + all the numbers they have guessed*/
 	/*how to start writing functions*/
 });
+
 
 
 // function findSolution(target) {
