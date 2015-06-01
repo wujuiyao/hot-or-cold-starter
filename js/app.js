@@ -28,6 +28,7 @@ $(document).ready(function(){
 
      function startGame(){
        var guessN = randomNumberArray();
+       //set all the var here
        //get a number from the array - start with first
        var number = guessN[0];
        console.log(number);
@@ -40,14 +41,20 @@ $(document).ready(function(){
      					alert('Number between 0 and 100');
      			}else if(isNaN(userGuess)){
      					alert('Numeric Number Please');
-     			}
+     			}else if (1 < userGuess < 101){
+             /*Check for the answer*/
+             if(userGuess == number){
+                var feedback = document.getElementById('feedback');
+                feedback.innerHTML = "Great, " + userGuess + " is the correct Number!!";
+              }else{
+
+              }
+          }
       /*Check all the clicks made*/
           var defaultVal = document.getElementById('count').innerHTML;
           defaultVal ++;
           document.getElementById('count').innerHTML = defaultVal;
           console.log(defaultVal);
-
-
 
        }, false);
 
@@ -64,8 +71,6 @@ $(document).ready(function(){
 		/*user guess and determines which feedback to provide*/
 		/*Feedback about the guess should appear in div#feedback*/
 
-	/*record all the guesses + all the numbers they have guessed*/
-	/*how to start writing functions*/
 });
 
 
