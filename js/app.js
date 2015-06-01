@@ -28,49 +28,47 @@ $(document).ready(function(){
 
      function startGame(){
        var guessN = randomNumberArray();
-       //set all the var here
-       //get a number from the array - start with first
-       var number = guessN[0];
-       console.log(number);
-
+       /*The answer number*/
+       var answer = guessN[0];
+       console.log(answer);
+       var feedback = document.getElementById('feedback');
        var guessButton = document.getElementById('guessButton');
+       /*Number guessed by User*/
+       var userGuess;
+       /*Distance between Answer and Number Guessed*/
+       var distance = null;
+       /*Distance between (number - previous guessed number) - Latest Guess)*/
+       var previousDistance = null;
+
+
        guessButton.addEventListener('click', function (){
-          var userGuess = document.getElementById('userGuess').value;
-      /*make sure the input are numeric*/
+          userGuess = document.getElementById('userGuess').value;
+          distance = Math.abs(answer - userGuess);
+          previousDistance = Math.abs(answer - userGuess[userGuess.length - 2]);
+
+       /*make sure the input are numeric*/
            if(userGuess > 100 || userGuess < 0){
      					alert('Number between 0 and 100');
      			}else if(isNaN(userGuess)){
      					alert('Numeric Number Please');
      			}else if (1 < userGuess < 101){
-             /*Check for the answer*/
-             if(userGuess == number){
-                var feedback = document.getElementById('feedback');
-                feedback.innerHTML = "Great, " + userGuess + " is the correct Number!!";
+             if(userGuess == answer){
+                feedback.innerHTML = "Great, " + userGuess + " is the correct !";
               }else{
-
+                console.log(previousDistance);
+                if(userGuess > answer){
+                }
               }
           }
       /*Check all the clicks made*/
-          var defaultVal = document.getElementById('count').innerHTML;
-          defaultVal ++;
-          document.getElementById('count').innerHTML = defaultVal;
-          console.log(defaultVal);
-
+          guesses = document.getElementById('count').innerHTML;
+          guesses ++;
+          document.getElementById('count').innerHTML = guesses;
+          console.log(guesses);
        }, false);
-
      }
-
-    //      //what does this code do?
-    //      //var value = parseInt(document.getElementById('number').value, 10);
-    //      // value = isNaN(value) ? 0 : value;
-    //      // value++;
-    //      // document.getElementById('number').value = value;
-
-
-
 		/*user guess and determines which feedback to provide*/
 		/*Feedback about the guess should appear in div#feedback*/
-
 });
 
 
