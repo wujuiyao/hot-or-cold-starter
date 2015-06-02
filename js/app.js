@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     randomNumberArray();
     startGame();
-
+    newGame();
     //generates a random number
     function randomInt() {
         return Math.floor(Math.random()*100) + 1;
@@ -25,18 +25,26 @@ $(document).ready(function(){
              nums.push(randomInt());}
          return nums;
      }
+     //new game button
+     function newGame(){
+       var guessN = randomNumberArray();
+       var answer = guessN[0];
+       return answer;
+     /*if the user clicks new game add number from the array and return the answer*/
+     }
+
+     function clickCount(){
+
+     }
 
      function startGame(){
-       var guessN = randomNumberArray();
-       /*The answer number*/
-       var answer = guessN[0];
-       console.log(answer);
+
+      answer = newGame();
+      console.log(answer);
        var feedback = document.getElementById('feedback');
        var guessButton = document.getElementById('guessButton');
        /*Number guessed by User*/
        var userGuess;
-       /*Finish or start again*/
-       var finish = false;
 
        guessButton.addEventListener('click', function (){
           userGuess = document.getElementById('userGuess').value;
@@ -67,7 +75,9 @@ $(document).ready(function(){
               }else if((userGuess - answer) > 7.5){
                 feedback.innerHTML = "Its hot!";
               }else if((userGuess - answer) > 5.5){
-                feedback.innerHTML = "Its very hot!";
+                feedback.innerHTML = "Its hotter!";
+              }else if((userGuess - answer) > 3.5){
+                feedback.innerHTML = "Its very very hot!";
               }else if((userGuess - answer) > 1.5){
                 feedback.innerHTML = "Its super hot";
               }else if((userGuess - answer) > 0.5){
@@ -90,7 +100,9 @@ $(document).ready(function(){
               }else if((answer - userGuess) > 7.5){
                 feedback.innerHTML = "Its hot!";
               }else if((answer - userGuess) > 5.5){
-                feedback.innerHTML = "Its very hot!";
+                feedback.innerHTML = "Its hotter!";
+              }else if((userGuess - answer) > 3.5){
+                feedback.innerHTML = "Its very very hot!";
               }else if((answer - userGuess) > 1.5){
                 feedback.innerHTML = "Its super hot";
               }else if((answer - userGuess) > 0.5){
