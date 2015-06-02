@@ -35,32 +35,67 @@ $(document).ready(function(){
        var guessButton = document.getElementById('guessButton');
        /*Number guessed by User*/
        var userGuess;
-       /*Distance between Answer and Number Guessed*/
-       var distance = null;
-       /*Distance between (number - previous guessed number) - Latest Guess)*/
-       var previousDistance = null;
-
 
        guessButton.addEventListener('click', function (){
           userGuess = document.getElementById('userGuess').value;
-          distance = Math.abs(answer - userGuess);
-          previousDistance = Math.abs(answer - userGuess[userGuess.length - 2]);
 
        /*make sure the input are numeric*/
            if(userGuess > 100 || userGuess < 0){
-     					alert('Number between 0 and 100');
+     					feedback.innerHTML = 'Number between 0 and 100!!';
      			}else if(isNaN(userGuess)){
-     					alert('Numeric Number Please');
+             feedback.innerHTML = 'Numeric Number Please!!';
      			}else if (1 < userGuess < 101){
              if(userGuess == answer){
-                feedback.innerHTML = "Great, " + userGuess + " is the correct !";
-              }else{
-                console.log(previousDistance);
-                if(userGuess > answer){
-                }
-              }
+                feedback.innerHTML = "Great, " + userGuess + " is the correct number !";
+              }/*Guesses are bigger than answer*/
+              else if((userGuess - answer) > 60){
+                feedback.innerHTML = "You are freezing";
+              }else if((userGuess - answer) > 50){
+                feedback.innerHTML = "Bit better, but still freezing";
+              }else if((userGuess - answer) > 40){
+                feedback.innerHTML = "You are very very cold";
+              }else if((userGuess - answer) > 30){
+                feedback.innerHTML = "You are cold";
+              }else if((userGuess - answer) > 20){
+                feedback.innerHTML = "Its getting Warm";
+              }else if((userGuess - answer) > 15){
+                feedback.innerHTML = "Its getting very warm";
+              }else if((userGuess - answer) > 10){
+                feedback.innerHTML = "Its getting very very warm";
+              }else if((userGuess - answer) > 7.5){
+                feedback.innerHTML = "Its hot!";
+              }else if((userGuess - answer) > 5.5){
+                feedback.innerHTML = "Its very hot!";
+              }else if((userGuess - answer) > 1.5){
+                feedback.innerHTML = "Its super hot";
+              }else if((userGuess - answer) > 0.5){
+                feedback.innerHTML = "Its burning";
+              } /*Guess are smaller than answer*/
+              else if((answer - userGuess) > 60){
+                feedback.innerHTML = "You are freezing";
+              }else if((answer - userGuess) > 50){
+                feedback.innerHTML = "Better, but still freezing";
+              }else if((answer - userGuess) > 40){
+                feedback.innerHTML = "You are very very cold";
+              }else if((answer - userGuess) > 30){
+                feedback.innerHTML = "You are cold";
+              }else if((answer - userGuess) > 20){
+                feedback.innerHTML = "Its getting Warm";
+              }else if((answer - userGuess) > 15){
+                feedback.innerHTML = "Its getting very warm";
+              }else if((answer - userGuess) > 10){
+                feedback.innerHTML = "Its getting very very warm";
+              }else if((answer - userGuess) > 7.5){
+                feedback.innerHTML = "Its hot!";
+              }else if((answer - userGuess) > 5.5){
+                feedback.innerHTML = "Its very hot!";
+              }else if((answer - userGuess) > 1.5){
+                feedback.innerHTML = "Its super hot";
+              }else if((answer - userGuess) > 0.5){
+                feedback.innerHTML = "Its burning";
+              }else{}
           }
-      /*Check all the clicks made*/
+      /*Check all the Guesses made*/
           guesses = document.getElementById('count').innerHTML;
           guesses ++;
           document.getElementById('count').innerHTML = guesses;
