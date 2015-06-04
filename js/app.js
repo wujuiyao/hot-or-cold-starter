@@ -10,31 +10,25 @@ $(document).ready(function(){
   	$("a.close").click(function(){
   		$(".overlay").fadeOut(1000);
   	});
+    
+    /**************************************************/
+    var secretNumber = 0;
 
-    randomNumberArray();
+    randomInt();
     startGame();
     newGame();
+
     //generates a random number
     function randomInt() {
-        return Math.floor(Math.random()*100) + 1;
+        secretNumber = Math.floor(Math.random()*100) + 1;
+        console.log("Secret Number is" + secretNumber);
     }
-    //keeps the random number and adds to an array
-    function randomNumberArray(){
-         nums = [];
-         for (var i = 0; i < 30; i = i + 1) {
-             nums.push(randomInt());}
-         return nums;
-     }
      //new game button
      function newGame(){
        var guessN = randomNumberArray();
        var answer = guessN[0];
        return answer;
      /*if the user clicks new game add number from the array and return the answer*/
-     }
-
-     function clickCount(){
-
      }
 
      function startGame(){
@@ -45,6 +39,7 @@ $(document).ready(function(){
        var guessButton = document.getElementById('guessButton');
        /*Number guessed by User*/
        var userGuess;
+       var newGuess;
 
        guessButton.addEventListener('click', function (){
           userGuess = document.getElementById('userGuess').value;
@@ -108,12 +103,13 @@ $(document).ready(function(){
               }else if((answer - userGuess) > 0.5){
                 feedback.innerHTML = "Its burning";
               }else{}
+            /*keep the guesses in the list, and clear the input field*/
           }
       /*Check all the Guesses made*/
-          guesses = document.getElementById('count').innerHTML;
-          guesses ++;
-          document.getElementById('count').innerHTML = guesses;
-          console.log(guesses);
+      guesses = document.getElementById('count').innerHTML;
+      guesses ++;
+      document.getElementById('count').innerHTML = guesses;
+      console.log(guesses);
       //
        }, false);
      }
