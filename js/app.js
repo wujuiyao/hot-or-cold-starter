@@ -30,7 +30,6 @@ $(document).ready(function(){
       var feedback = document.getElementById('feedback');
       userGuess = document.getElementById('userGuess').value;
       distance = Math.abs(secretNumber - userGuess);
-      var test = Math.abs((secretNumber - userGuess) % 10);
       console.log("Distance between Secret N. and Guessed Number is " + distance);
       if(finishState === false){
         if(userGuess > 100 || userGuess < 0){
@@ -38,7 +37,7 @@ $(document).ready(function(){
          }else if(isNaN(userGuess)){
            feedback.innerHTML = 'Numeric Number Please!';
          }else if(userGuess === ""){
-           feedback.innerHTML = 'Enter a Numeric Number!';
+           feedback.innerHTML = 'Oops Number missing!';
            clickCount = 0-1;
          }else if (1 < userGuess < 101){
            if(userGuess / secretNumber == 1){
@@ -62,7 +61,7 @@ $(document).ready(function(){
               feedback.innerHTML = "It's very hot";
             }else if(distance > 1.5){
               feedback.innerHTML = "It's super hot";
-            }else if(distance > 0.5 ){
+            }else if(distance > 0.5){
               feedback.innerHTML = "It's Burning!!!";
             }else{}
         }
@@ -72,41 +71,36 @@ $(document).ready(function(){
     }
     checkInput();
 
-
+    /*Count the Clicks function*/
     function clicksMade(){
       clickCount++;
       document.getElementById('count').innerHTML = clickCount;
     }
+    /*What to do after the Guess Button has been clicked*/
+    function clickGuess(){
+      var guessButton = document.getElementById('guessButton');
+      guessButton.addEventListener('click', function(){
+               checkInput();
+               clicksMade();
+      });
+    }
+    clickGuess();
 
-    var guessButton = document.getElementById('guessButton');
-    guessButton.addEventListener('click', function(){
-             checkInput();
-             clicksMade();
-    });
+    /*reset game details*/
+    function reset(){
+      console.log("Starting a new Game");
+      secretNumber = 0;
+      userGuess = "";
+      clickCount = 0;
+      distance= 0;
+      finishState = false;
+    }
 
-
-    function startGame(){
+    /*create a function for new game button that triggers ther reset state*/
+    function startNewGame(){
 
      }
-       startGame();
+    startNewGame();
 
 
-         /*reset game details*/
-         function reset(){
-           console.log("Starting a new Game");
-           secretNumber = 0;
-           userGuess = "";
-           clickCount = 0;
-           distance= 0;
-           finishState = false;
-         }
 });
-
-
-/*--- Function that resets game --*/
-/*--- Function that counts attempts of user --*/
-/*---- To start a new game ----*/
-/*-- Checks the user's input--*/
-/*--- To get user's input --*/
-/*all the functions should stay*/
-/*create a new game function that set to basic*/
