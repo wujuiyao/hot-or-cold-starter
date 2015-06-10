@@ -30,23 +30,19 @@ $(document).ready(function(){
       var feedback = document.getElementById('feedback');
       userGuess = document.getElementById('userGuess').value;
       distance = Math.abs(secretNumber - userGuess);
-      console.log("Distance between Secret N. and Guessed Number is " + distance);
-      if(finishState === false){
         if(userGuess > 100 || userGuess < 0){
            feedback.innerHTML = 'Number between 0 and 100!';
          }else if(isNaN(userGuess)){
            feedback.innerHTML = 'Numeric Number Please!';
          }else if(userGuess === ""){
-           feedback.innerHTML = 'Oops Number missing!';
+           feedback.innerHTML = 'Enter a number from 1 - 100';
            clickCount = 0-1;
          }else if (1 < userGuess < 101){
            if(userGuess / secretNumber == 1){
               feedback.innerHTML = "Great, " + userGuess + " is the correct number !";
               finishState = true;
-            }else if(distance > 60){
-              feedback.innerHTML = "You are really freezing";
             }else if(distance > 50){
-              feedback.innerHTML = "Still freezing";
+              feedback.innerHTML = "You are freezing";
             }else if(distance > 40){
               feedback.innerHTML = 'Its very cold';
             }else if(distance > 30){
@@ -65,11 +61,7 @@ $(document).ready(function(){
               feedback.innerHTML = "It's Burning!!!";
             }else{}
         }
-      }else{
-        feedback.innerHTML = "You already won! Start a New Game";
-      }
     }
-    checkInput();
 
     /*Count the Clicks function*/
     function clicksMade(){
@@ -80,25 +72,39 @@ $(document).ready(function(){
     function clickGuess(){
       var guessButton = document.getElementById('guessButton');
       guessButton.addEventListener('click', function(){
-               checkInput();
-               clicksMade();
+        if(finishState === false){
+          checkInput();
+          clicksMade();
+        } else {
+          feedback.innerHTML = "You already won! Start a New Game";
+        }
+        return false;
       });
     }
     clickGuess();
 
+
+    function initFeedback(){
+      document.getElementById('feedback').innerHTML = "Make your Guess!";
+    }
+
     /*reset game details*/
     function reset(){
       console.log("Starting a new Game");
-      secretNumber = 0;
-      userGuess = "";
-      clickCount = 0;
-      distance= 0;
       finishState = false;
+      secretNumber = randomInt();
+      initFeedback();
+
+      window.clickCount = 0;
+      window.userGuess = 0;
     }
 
-    /*create a function for new game button that triggers ther reset state*/
+    /*New Game*/
     function startNewGame(){
-
+      var newGame = document.getElementById("new");
+      newGame.addEventListener('click', function(){
+        reset();
+      });
      }
     startNewGame();
 
