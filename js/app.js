@@ -106,9 +106,11 @@ $(document).ready(function(){
     function addNode(evt){
       var inText = document.getElementById('userGuess').value;
       var newText = document.createTextNode(inText);
-      console.log(newText);
       var newLi = document.createElement("li");
-      
+      newLi.appendChild(newText);
+      var list = document.getElementById('guessList');
+      list.appendChild(newLi);
+      evt.preventDefault();
     }
 
 
