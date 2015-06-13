@@ -24,6 +24,40 @@ $(document).ready(function(){
     }
     randomInt();
 
+
+    function clickGuess(){
+      var feedback = document.getElementById('feedback');
+      var guessButton = document.getElementById('guessButton');
+      var myClicks = document.getElementById('count');
+
+      guessButton.addEventListener('click', function(){
+        clickCount++;
+        myClicks.innerHTML = clickCount;
+        if(finishState === false){
+          checkInput();
+          addNode();
+        } else {
+          feedback.innerHTML = "You already won! Start a New Game";
+        }
+        return false;
+      });
+    }
+    clickGuess();
+
+    function checkInput(){
+      userGuess = document.getElementById('userGuess').value;
+      distance = Math.abs(secretNumber - userGuess);
+      if(userGuess > 100 || userGuess < 0){
+         feedback.innerHTML = 'Number between 0 and 100!';
+       }else if(isNaN(userGuess)){
+         feedback.innerHTML = 'Numeric Number Please!';
+       }else if(userGuess === ""){
+         feedback.innerHTML = 'Enter a number from 1 - 100';
+       }else if (1 < userGuess < 101){
+         compareNumber();
+      }
+    }
+
     function compareNumber(){
       switch(true){
         case userGuess / secretNumber == 1:
@@ -53,42 +87,6 @@ $(document).ready(function(){
       }
     }
 
-    /*Evaluates the Input*/
-    function checkInput(){
-      var feedback = document.getElementById('feedback');
-      userGuess = document.getElementById('userGuess').value;
-      distance = Math.abs(secretNumber - userGuess);
-      if(userGuess > 100 || userGuess < 0){
-         feedback.innerHTML = 'Number between 0 and 100!';
-       }else if(isNaN(userGuess)){
-         feedback.innerHTML = 'Numeric Number Please!';
-       }else if(userGuess === ""){
-         feedback.innerHTML = 'Enter a number from 1 - 100';
-         clickCount = 0-1;
-       }else if (1 < userGuess < 101){
-         compareNumber();
-      }
-    }
-
-    /*Count the Clicks function*/
-    function clicksMade(){
-      clickCount++;
-      document.getElementById('count').innerHTML = clickCount;
-    }
-    /*What to do after the Guess Button has been clicked*/
-    function clickGuess(){
-      var guessButton = document.getElementById('guessButton');
-      guessButton.addEventListener('click', function(){
-        if(finishState === false){
-          checkInput();
-          clicksMade();
-        } else {
-          feedback.innerHTML = "You already won! Start a New Game";
-        }
-        return false;
-      });
-    }
-    clickGuess();
 
     function initFeedback(){
       document.getElementById('feedback').innerHTML = "Make your Guess!";
@@ -100,19 +98,19 @@ $(document).ready(function(){
       finishState = false;
       secretNumber = randomInt();
       initFeedback();
-      
+
       clickCount = 0;
       userGuess = 0;
     }
 
-    /*New Game*/
-    function startNewGame(){
-      var newGame = document.getElementById("new");
-      newGame.addEventListener('click', function(){
-        reset();
-        return false;
-      });
-     }
-    startNewGame();
+    function addNode(evt){
+      var inText = document.getElementById('userGuess').value;
+      var newText = document.createTextNode(inText);
+      console.log(newText);
+      var newLi = document.createElement("li");
+      
+    }
+
+
 
 });
