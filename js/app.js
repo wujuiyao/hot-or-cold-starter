@@ -103,16 +103,36 @@ $(document).ready(function(){
       userGuess = 0;
     }
 
-    function addNode(evt){
+    document.getElementById('new').addEventListener('click', removeNode, false);
+
+    function addNode(){
       var inText = document.getElementById('userGuess').value;
       var newText = document.createTextNode(inText);
       var newLi = document.createElement("li");
       newLi.appendChild(newText);
+
       var list = document.getElementById('guessList');
       list.appendChild(newLi);
-      evt.preventDefault();
     }
 
+    function removeNode(){
+      var allLi = document.getElementsByTagName('li');
+      if(allLi.length > 1){
+        var list = document.getElementById('guessList');
+        list.removeChild(allLi);
+      }else{
+        alert('Nothing to Delete');
+      }
+    }
+
+    function book(){
+      var allGrafs = document.getElementsByTagName("p");
+      if (allGrafs.length > 1){
+        var lastGraf = allGrafs[all.Grafs.length-1];
+        var docBody = document.getElementsByTagName("body")[0];
+        docbody.removeChild(lastGraf);
+      }
+    }
 
 
 });
