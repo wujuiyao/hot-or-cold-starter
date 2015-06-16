@@ -16,7 +16,6 @@ $(document).ready(function(){
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
     	$(".overlay").fadeIn(1000);
-
   	});
 
   /*--- Hide information modal box ---*/
@@ -90,19 +89,14 @@ $(document).ready(function(){
     }
 
     function reset(){
-      console.log("Start a new Game");
-
+      console.log("Starting a new Game");
       finishState = false;
-
       userGuess = document.getElementById('userGuess');
       userGuess.value = '';
-
       clickCount = 0;
       myClicks.innerHTML = clickCount;
-
       document.getElementById('feedback').innerHTML = "Make your Guess!";
       document.getElementById('guessList').innerHTML = '';
-
       secretNumber =  Math.floor(Math.random()*100) + 1;
       console.log('New Secret Number is ' + secretNumber);
     }
